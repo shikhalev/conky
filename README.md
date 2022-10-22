@@ -11,6 +11,9 @@ Some Conky Stuff
 ```Lua
 function conky_hwmon(device, type, index)
 ```
+
+Replacement for `{$hwmon ...}` statement with name of device instead number. Also NVME devices named with index: `nvme0`, `nvme1`, etc.
+
 Usage Example:
 
 ```Conky
