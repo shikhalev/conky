@@ -6,7 +6,7 @@ Some Conky Stuff
 
 ### `utils.lua`
 
-#### `conky_format`
+#### `conky_format()`
 
 ```Lua
 function conky_format(format, number)
@@ -34,7 +34,7 @@ function readlink(path)
 
 ### `hwmon.lua`
 
-#### `conky_hwmon`
+#### `conky_hwmon()`
 
 ```Lua
 function conky_hwmon(device, type, index)
@@ -48,7 +48,7 @@ Usage example:
 ${lua hwmon k10temp temp 1}
 ```
 
-#### `conky_hwmon_index`
+#### `conky_hwmon_index()`
 
 ```Lua
 function conky_hwmon_index(device)
