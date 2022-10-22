@@ -4,9 +4,9 @@ Some Conky Stuff
 
 ## Lua Scripts
 
-### `utils`
+### Module `utils`
 
-#### `conky_format`
+#### Function `conky_format`
 
 ```Lua
 function conky_format(format, number)
@@ -32,9 +32,9 @@ function trim(value)
 function readlink(path)
 ```
 
-### `hwmon`
+### Module `hwmon`
 
-#### `conky_hwmon`
+#### Function `conky_hwmon`
 
 ```Lua
 function conky_hwmon(device, type, index)
@@ -48,7 +48,7 @@ Usage example:
 ${lua hwmon k10temp temp 1}
 ```
 
-#### `conky_hwmon_index`
+#### Function `conky_hwmon_index`
 
 ```Lua
 function conky_hwmon_index(device)
