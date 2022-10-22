@@ -6,12 +6,12 @@ Some Conky Stuff
 
 ### `hwmon`
 
-#### Declaration
+#### `conky_hwmon`
 
 ```Lua
 function conky_hwmon(device, type, index)
 ```
-#### Usage Example
+Usage Example:
 
 ```Conky
 {$lua hwmon k10temp temp 1}
