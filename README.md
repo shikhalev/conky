@@ -4,6 +4,20 @@ Some Conky Stuff
 
 ## Lua Scripts
 
+### `utils`
+
+#### `conky_format`
+
+```Lua
+function conky_format(format, number)
+```
+
+Usage example:
+
+```Conky
+${lua format %3s ${cpu cpu1}}
+```
+
 ### `hwmon`
 
 #### `conky_hwmon`
@@ -14,7 +28,7 @@ function conky_hwmon(device, type, index)
 
 Replacement for `${hwmon ...}` statement with name of device instead number. Also NVME devices named with index: `nvme0`, `nvme1`, etc.
 
-Usage Example:
+Usage example:
 
 ```Conky
 ${lua hwmon k10temp temp 1}
