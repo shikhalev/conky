@@ -18,6 +18,20 @@ Usage example:
 ${lua format %3s ${cpu cpu1}}
 ```
 
+#### Micro utils
+
+```Lua
+function round(value)
+```
+
+```Lua
+function trim(value)
+```
+
+```Lua
+function readlink(path)
+```
+
 ### `hwmon`
 
 #### `conky_hwmon`
