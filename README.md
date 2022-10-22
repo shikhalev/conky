@@ -1,3 +1,3 @@
 # conky
 
-Some Conky Scripts
+Some Conky Stuff
