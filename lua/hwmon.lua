@@ -18,11 +18,9 @@ while true do
 end
 
 function conky_hwmon_index(device)
---    hwmon_detect()
     return hwmon_indices[device]
 end
 
 function conky_hwmon(device, type, index)
---    hwmon_detect()
     return conky_parse('${hwmon ' .. hwmon_indices[device] .. ' ' .. type .. ' ' .. index .. '}')
 end
