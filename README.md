@@ -61,3 +61,36 @@ Usage example:
 ```Conky
 ${lua hwmon_index k10temp}
 ```
+
+### `apcups.lua`
+
+Get data from `apcupsd` service by `apcaccess`.
+
+#### `conky_apcups_get()`
+
+```Lua
+function conky_apcups_get(hostport, property, update)
+```
+
+Get some property. Set `update` to `true` for one (first) property of device.
+
+Usage example:
+
+```Conky
+${lua apcups_get localhost:3551 model true}
+${lua apcups_get localhost:3551 bcharge}
+```
+
+#### `conky_apcups_load()`
+
+```Lua
+function conky_apcups_load(hostport)
+```
+
+Reload data for device.
+
+Usage example:
+
+```Conky
+${lua apcups_load localhost:3551}${lua apcups_get localhost:3551 model}
+```
