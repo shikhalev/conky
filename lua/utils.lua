@@ -5,6 +5,10 @@ function round(value)
     return math.floor(value + 0.5)
 end
 
+function round1(value)
+    return round(value * 10) / 10
+end
+
 function conky_format(format, number)
     return string.format(format, conky_parse(number))
 end

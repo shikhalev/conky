@@ -95,7 +95,7 @@ end
 
 function conky_openweather_city_id(place)
     local data = load_place(place)
-    return data.city.id
+    return math.floor(data.city.id)
 end
 
 function conky_openweather_city_name(place)
@@ -105,40 +105,40 @@ end
 
 function conky_openweather_sunset(place, format)
     local data = load_place(place)
-    local sunset = tonumber(data.city.sunset) + tonumber(data.city.timezone)
+    local sunset = tonumber(data.city.sunset)
     return os.date(format, sunset)
 end
 
 function conky_openweather_sunrise(place, format)
     local data load_place(place)
-    local sunrise = tonumber(data.city.sunrise) + tonumber(data.city.timezone)
+    local sunrise = tonumber(data.city.sunrise)
     return os.date(format, sunrise)
 end
 
 function conky_openweather_count(place)
     local data = load_place(place)
-    return data.cnt
+    return math.floor(data.cnt)
 end
 
 function conky_openweather_weather_time(place, index, format)
     local data = load_place(place)
-    local time = tonumber(data.list[tonumber(index)].dt) + tonumber(data.city.timezone)
+    local time = tonumber(data.list[tonumber(index)].dt)
     return os.date(format, time)
 end
 
 function conky_openweather_weather_temp(place, index)
     local data = load_place(place)
-    return data.list[tonumber(index)].main.temp
+    return round1(data.list[tonumber(index)].main.temp)
 end
 
 function conky_openweather_weather_temp_min(place, index)
     local data = load_place(place)
-    return data.list[tonumber(index)].main.temp_min
+    return round1(data.list[tonumber(index)].main.temp_min)
 end
 
 function conky_openweather_weather_temp_max(place, index)
     local data = load_place(place)
-    return data.list[tonumber(index)].main.temp_max
+    return round1(data.list[tonumber(index)].main.temp_max)
 end
 
 function conky_openweather_weather_pressure(place, index)
