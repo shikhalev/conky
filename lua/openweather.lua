@@ -89,8 +89,8 @@ function conky_openweather_url(place)
     return url
 end
 
-function conky_openweather_updated(place)
-    return weather.config.places[place].updated
+function conky_openweather_updated(place, format)
+    return os.date(format, weather.config.places[place].updated)
 end
 
 function conky_openweather_city_id(place)
