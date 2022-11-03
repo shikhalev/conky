@@ -56,7 +56,7 @@ local function load_place(place)
     if config.city_id then
         url = url .. '&id=' .. config.city_id
     end
-    local datafile = weather.config.data_path .. place .. '-' .. current_time .. '.json'
+    local datafile = weather.config.data_path .. place .. '-' .. os.date('%Y%m%d-%H%M%S', current_time) .. '.json'
     if download_file(url, datafile) then
         weather.places[place] = cjson.decode(readfile(datafile))
         weather.config.places[place].updated = current_time
@@ -176,4 +176,8 @@ function conky_openweather_weather_icon_filename(place, index)
         end
     end
     return filename
+end
+
+function conky_openweather_weather_icon_image(place, index, position)
+    return conky_parse('${image ' .. conky_openweather_weather_icon_filename(place, index) .. ' -p ' .. position .. '}')
 end

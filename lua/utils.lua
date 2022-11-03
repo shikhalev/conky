@@ -35,7 +35,6 @@ end
 function download_file(url, filename)
     local body, code = http.request(url)
     if not body then
-        -- return nil
         error(code)
     end
     local handle, err = io.open(filename, 'wb')
