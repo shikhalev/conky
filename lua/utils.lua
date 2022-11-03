@@ -35,11 +35,12 @@ end
 function download_file(url, filename)
     local body, code = http.request(url)
     if not body then
-        return nil
+        -- return nil
+        error(code)
     end
-    local handle = io.open(filename, 'wb')
+    local handle, err = io.open(filename, 'wb')
     if not handle then
-        return nil
+        error(err)
     end
     handle:write(body)
     handle:close()

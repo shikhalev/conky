@@ -153,22 +153,22 @@ end
 
 function conky_openweather_weather_id(place, index)
     local data = load_place(place)
-    return data.list[tonumber(index)].weather.id
+    return data.list[tonumber(index)].weather[1].id
 end
 
 function conky_openweather_weather_description(place, index)
     local data = load_place(place)
-    return data.list[tonumber(index)].weather.description
+    return data.list[tonumber(index)].weather[1].description
 end
 
 function conky_openweather_weather_icon(place, index)
     local data = load_place(place)
-    return data.list[tonumber(index)].weather.icon
+    return data.list[tonumber(index)].weather[1].icon
 end
 
 function conky_openweather_weather_icon_filename(place, index)
     local icon = conky_openweather_weather_icon(place, index)
-    local filename = weather.options.icon_cache_path .. icon .. ".png"
+    local filename = weather.config.icon_cache_path .. icon .. ".png"
     if not fileexists(filename) then
         local url = string.format(icons_url, icon)
         if not download_file(url, filename) then
