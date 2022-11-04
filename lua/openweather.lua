@@ -22,48 +22,6 @@ if weather.config.data_path == nil then
 end
 os.execute('mkdir -p ' .. weather.config.data_path)
 
-function conky_cjson_test()
-    -- return 'XXX'
-    return weather.config.api_key
-end
-
-local function load_place(place)
-    local config = weather.config.places[place]
-    if config == nil then
-        error('Config ' .. place .. ' not found!')
-    end
-    
-    -- check timing
-    local update_interval = config.update_interval or weather.config.update_interval or default_update_interval
-    local current_time = os.time()
-    if config.updated and config.updated > current_time - update_interval then
-        return weather.places[place]
-    end
-
-    local url = weather_url .. 'appid=' .. weather.config.api_key
-    if weather.config.units then
-        url = url .. '&units=' .. weather.config.units
-    end
-    if weather.config.lang then
-        url = url .. '&lang=' .. weather.config.lang
-    end
-    if config.latitude then
-        url = url .. '&lat=' .. config.latitude
-    end
-    if config.longitude then
-        url = url .. '&lon=' .. config.longitude
-    end
-    if config.city_id then
-        url = url .. '&id=' .. config.city_id
-    end
-    local datafile = weather.config.data_path .. place .. '-' .. os.date('%Y%m%d-%H%M%S', current_time) .. '.json'
-    if download_file(url, datafile) then
-        weather.places[place] = cjson.decode(readfile(datafile))
-        weather.config.places[place].updated = current_time
-    end
-    return weather.places[place]
-end
-
 function conky_openweather_url(place)
     local config = weather.config.places[place]
     if config == nil then
@@ -87,6 +45,28 @@ function conky_openweather_url(place)
         url = url .. '&id=' .. config.city_id
     end
     return url
+end
+
+local function load_place(place)
+    local config = weather.config.places[place]
+    if config == nil then
+        error('Config ' .. place .. ' not found!')
+    end
+    
+    -- check timing
+    local update_interval = config.update_interval or weather.config.update_interval or default_update_interval
+    local current_time = os.time()
+    if config.updated and config.updated > current_time - update_interval then
+        return weather.places[place]
+    end
+
+    local url = conky_openweather_url(place)
+    local datafile = weather.config.data_path .. place .. '-' .. os.date('%Y%m%d-%H%M%S', current_time) .. '.json'
+    if download_file(url, datafile) then
+        weather.places[place] = cjson.decode(readfile(datafile))
+        weather.config.places[place].updated = current_time
+    end
+    return weather.places[place]
 end
 
 function conky_openweather_updated(place, format)
